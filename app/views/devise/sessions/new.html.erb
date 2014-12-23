@@ -1,11 +1,12 @@
 <div class="wrapper">
-  <form class="form-signin">
-    <h2 class="form-signin-heading">Ingrese</h2>
-    <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="" autofocus="" />
-    <input type="password" class="form-control" name="password" placeholder="Contraseña" required=""/>
-    <label class="checkbox">
-      <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Recordarme
-    </label>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-  </form>
-</div>
+<%= form_for(:user, class: "form-signin") do |f| %>
+  <h2 class="form-signin-heading">Ingrese</h2>
+  <%= f.text_field :username, class:"form-control", type: "text", placeholder: "Nombre de usuario" %>
+  <%= f.password_field :password, class:"form-control", placeholder: "Contraseña" %>
+  <% if devise_mapping.rememberable? -%>
+    <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+  <% end %>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+<% end %>
+
