@@ -1,1 +1,13 @@
-<h1>Mataloni Propiedades</h1>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <h3>Mataloni Propiedades</h3>
+  </div>
+</nav>
+
+<h3><%= @building.address %></h3>
+<h4>Expensas:</h4>
+<ul>
+  <% @building.expenses.each do |expense| %>
+    <li><%= link_to expense.month_year, expense.file.url %></li>
+  <% end %>
+</ul>

@@ -1,10 +1,13 @@
 ActiveAdmin.register User do
 
-  permit_params :email, :password, :password_confirmation, :building_id
+  permit_params :username, :email,
+                :password, :password_confirmation,
+                :building_id
 
   index do
     selectable_column
     id_column
+    column :username
     column :email
     column :building do |b|
       link_to b.building.address, admin_building_path(b.building)
@@ -23,6 +26,7 @@ ActiveAdmin.register User do
   show do
     attributes_table do
       row :id
+      row :username
       row :email
       row "edificio" do
         link_to user.building.address, admin_building_path(user.building)
@@ -32,6 +36,7 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "Admin Details" do
+      f.input :username
       f.input :email
       f.input :password
       f.input :password_confirmation
