@@ -10,8 +10,11 @@ ActiveAdmin.register Building do
       end
       panel "Expensas" do
         table_for building.expenses do
-          column (:for_month) do |expense| 
+          column ("mes") do |expense|
             link_to(expense.month_year, admin_expense_path(expense))
+          end
+          column ("archivo") do |expense|
+            link_to 'Archivo', expense.file.url
           end
         end
       end
