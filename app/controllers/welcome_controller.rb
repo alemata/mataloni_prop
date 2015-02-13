@@ -1,8 +1,12 @@
 class WelcomeController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :except => [:index]
 
   def index
-    @building = current_user.building
+    if !current_user
+      redirect_to new_user_session_path
+    else
+      @building = current_user.building
+    end
   end
 end
